@@ -1,2 +1,2 @@
-# alnashar-bot1
-alnashar-bot1
+# dines20bot-room
+dines20bot-room
