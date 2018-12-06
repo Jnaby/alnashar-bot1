@@ -4,6 +4,7 @@ console.log("BOT ONLINE");
 
 const prefix = "!"
 const version = "3.2.8"
+const token = "NTIwMjkwODg2NDYzMjU4NjU0.Duruxg.qDwwmgcYrlf2k4gksdizmGFGQrs"
 const game = "with you!"
 const status = "invisible"
 var eightball = [ // sets the answers to an eightball
@@ -68,4 +69,3 @@ exports.delete = function(req, res) {
 
 
  
-client.login(process.env.BOT_TOKEN);
